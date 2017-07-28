@@ -37,7 +37,7 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 swatch-size = 2rem
 
 .color

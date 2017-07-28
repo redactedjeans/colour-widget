@@ -12,7 +12,20 @@ export default {
   name: 'color',
   props: [ 'hex' ],
   data () {
-    return { name: 'name' }
+    return { name: this.getColorData(this.hex) }
+  },
+  methods: {
+    getColorData: function (hex) {
+      axios.get('http://thecolorapi.com/id?hex=' + hex)
+        .then(function (response) {
+          console.log(response)
+          return response.name.value
+        })
+        .catch(function (error) {
+          console.log("ERROR")
+          return null
+        })
+    }
   }
 }
 </script>

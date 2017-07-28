@@ -1,5 +1,5 @@
 {
-  "name": "Colour Widget",
+  "name": "colour-widget",
   "author": "Thomas Lynch",
   "version": "0.0.1",
   "description": "A simple widget to save colour schemes.",
@@ -8,6 +8,7 @@
     "build": "webpack --progress --hide-modules"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "vue": "^2.1.10"
   },
   "devDependencies": {

@@ -2,8 +2,8 @@
 <div class="color">
   <div class="swatch" :style="{ backgroundColor: '#' + hex }"></div>
   {{ name }}<br>
-  ()<br>
-  #{{ hex }}
+  ({{ rgb.r }}, {{ rgb.g }}, {{rgb.b}})<br>
+  {{ cleanHex }}
 </div>
 </template>
 
@@ -12,18 +12,28 @@ export default {
   name: 'color',
   props: [ 'hex' ],
   data () {
-    return { name: this.getColorData(this.hex) }
+    return {
+      name: '-',
+      rgb: {r: null, g: null, b: null},
+      cleanHex: this.hex
+    }
+  },
+  created () {
+    this.getColorData()
   },
   methods: {
-    getColorData: function (hex) {
-      axios.get('http://thecolorapi.com/id?hex=' + hex)
+    getColorData: function () {
+      let vm = this
+      axios.get('http://www.thecolorapi.com/id?hex=' + vm.hex, {timeout: 5000})
         .then(function (response) {
-          console.log(response)
-          return response.name.value
+          vm.name = response.data.name.value
+          vm.rgb = response.data.rgb
+          vm.cleanHex = response.data.hex.value
         })
         .catch(function (error) {
-          console.log("ERROR")
-          return null
+          console.log(error)
+          //TODO: fallback -> local conversion to rgb, placeholder name
+          vm.name = '[[ no name found ]]'
         })
     }
   }

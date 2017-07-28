@@ -1,7 +1,8 @@
 <template>
 <div id="app">
+  <h1>Colors</h1>
   <color-list></color-list>
-  <add-button></add-button>
+  <!-- <add-button></add-button> -->
 </div>
 </template>
 
@@ -19,8 +20,8 @@ export default {
 </script>
 
 <style lang="stylus">
-body
-  margin 0
-  font-size 62.5%
-  min-width 320px
+h1
+  font-size 1rem
+  font-weight bold
+  font-family sans-serif
 </style>

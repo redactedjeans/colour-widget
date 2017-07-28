@@ -12,8 +12,11 @@ export default {
   components: { Color },
   data () {
     return { colors: [
-        { hex: '#123132' },
-        { hex: '#916df4' }
+        { hex: '160004' },
+        { hex: 'f7fefe' },
+        { hex: '5f021f' },
+        { hex: '1f363d' },
+        { hex: '40798c' }
     ]}
   }
 }

@@ -1,17 +1,20 @@
 <template>
 <div id="app">
-  <column></column>
-  <column></column>
-  <column></column>
+  <color-list></color-list>
+  <add-button></add-button>
 </div>
 </template>
 
 <script>
-import Column from './components/Column.vue'
+import ColorList from './components/Colors.vue'
+import AddButton from './components/AddButton.vue'
 
 export default {
   name: 'app',
-  components: { Column }
+  components: {
+    ColorList,
+    AddButton
+  }
 }
 </script>
 

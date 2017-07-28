@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "ntc": "0.0.1",
     "vue": "^2.1.10"
   },
   "devDependencies": {

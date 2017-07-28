@@ -1,14 +1,14 @@
 <template>
 <div class="color">
-  <div class="swatch" :style="{ backgroundColor: cleanHex }"></div>
+  <div class="swatch" :style="{ backgroundColor: strHex }"></div>
   {{ name }}<br>
   ({{ rgb.r }}, {{ rgb.g }}, {{rgb.b}})<br>
-  {{ cleanHex }}
+  {{ strHex }}
 </div>
 </template>
 
 <script>
-import axios from 'axios'
+import ntc from 'ntc'
 
 export default {
   name: 'color',
@@ -17,7 +17,7 @@ export default {
     return {
       name: '-',
       rgb: {r: null, g: null, b: null},
-      cleanHex: '#' + this.hex
+      strHex: '#' + this.hex
     }
   },
   created () {
@@ -25,22 +25,13 @@ export default {
   },
   methods: {
     getColorData: function () {
-      let vm = this
-      axios.get('http://www.thecolorapi.com/id?hex=' + vm.hex, {timeout: 5000})
-        .then(function (response) {
-          vm.name = response.data.name.value
-          vm.rgb = {r: response.data.rgb.r, g: response.data.rgb.g, b: response.data.rgb.b}
-          vm.cleanHex = response.data.hex.value
-        })
-        .catch(function (error) {
-          console.log(error)
-          vm.name = '[[ no name found ]]'
-          vm.rgb = {
-            r: parseInt(vm.hex.substr(0,2), 16),
-            g: parseInt(vm.hex.substr(2,2), 16),
-            b: parseInt(vm.hex.substr(4,2), 16)
-          }
-        })
+      this.name = ntc.name(this.hex)[1]
+      this.rgb = {
+        r: parseInt(this.hex.substr(0,2), 16),
+        g: parseInt(this.hex.substr(2,2), 16),
+        b: parseInt(this.hex.substr(4,2), 16)
+      }
+      this.strHex = '#' + this.hex.toLowerCase()
     }
   }
 }
